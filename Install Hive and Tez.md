@@ -41,15 +41,91 @@ https://stackoverflow.com/questions/41645309/mysql-error-access-denied-for-user-
 
 ``` source /home/appuser/hive/scripts/metastore/upgrade/mysql/hive-schema-3.1.0.mysql.sql ```
 
-``` CREATE USER 'hiveuser'@'%' IDENTIFIED BY 'hivepassword'; ``` 
+``` CREATE USER 'appuser'@'%' IDENTIFIED BY 'o'; ``` 
 
-```GRANT all on *.* to 'hiveuser'@localhost identified by 'hivepassword';```
+```GRANT all on *.* to 'appuser'@localhost identified by 'o';```
 
 ```flush privileges;```
 
-* Note replace hiveuser and hivepassword with actual one
+* Note replace 'appuser' and 'o' with actual one
 
 
 * Note : (All commands can be used for mysql as well with slight changes)
 
 ## Setup Hive
+
+For this document purpose, we assume hive and tez are extracted in location "/home/appuser/hive" and /home/appuser/tez
+
+### Setup HDFS Location for hive
+```
+hdfs dfs -mkdir /tmp
+hdfs dfs -mkdir -p /user/hive/warehouse
+hdfs dfs -chmod -R g+w  /tmp
+hdfs dfs -chmod -R g+w /user/hive/warehouse
+```
+### Setup enviroment variable in .bashrc
+
+```
+export HADOOP_HOME=<HADOOP_HOME_DIR>
+export HIVE_HOME=<HIVE_HOME_DIR>
+
+export PATH=$PATH:$HIVE_HOME/bin
+```
+
+### Setup hive.xml
+
+create or edit hive-site.xml in HIVE_HOME/conf folder and add the below lines
+
+```
+
+<configuration>
+   <property>
+      <name>javax.jdo.option.ConnectionURL</name>
+      <value>jdbc:mysql://localhost/metastore</value>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionDriverName</name>
+      <value>com.mariadb.jdbc.Driver</value>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionUserName</name>
+      <value>appuser</value>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionPassword</name>
+      <value>o</value>
+   </property>
+</configuration>
+
+```
+
+
+## setup Tez
+
+### Copy lib to hdfs
+
+```
+hdfs dfs -put ~/tez/share/tez.tar.gz /apps/lib/.
+
+```
+
+### Setup enviroment variable
+
+Copy below lines as part of your .bashrc file
+```
+export TEZ_CONF_DIR=~/tez/conf
+export TEZ_JARS=~/tez/*:~/tez/lib/*
+export HADOOP_CLASSPATH=$TEZ_CONF_DIR:$TEZ_JARS:$HADOOP_CLASSPATH
+```
+
+### configure tez-site.xml
+```
+<property>                                                       <name>tez.lib.uris</name>
+     <value>/apps/lib/tez.tar.gz</value>
+</property>
+```
+
+### Start Server
+hiveserver2
+
+beeline -u jdbc:hive://localhost:10000
