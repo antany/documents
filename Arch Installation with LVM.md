@@ -14,7 +14,7 @@ General Guidance for HDD location = (Ramsize * 1.5) Swap + .5 GB + 2 GB (OS) + O
 2. Execute the following commands
     * ```timedatectl set-ntp true```
     * ```lsblk```       // to check hardisk name (in my case sda, check), If your's different than mine, replace all the below commands with 
-    * ```fdisk \dev\sda```
+    * ```fdisk /dev/sda```
 3. Fdisk Setup
     * 512 Boot (n, default, default,default,+512M, a, p )
     * 12 GB Swap (n, default, default,default,+12G,  p )
