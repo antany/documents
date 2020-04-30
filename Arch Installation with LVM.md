@@ -39,7 +39,7 @@ General Guidance for HDD location = (Ramsize * 1.5) Swap + .5 GB + 2 GB (OS) + O
 
 6. Installation
     * Setup mirror edit "/etc/pacman.d/mirrorlist" and bring the mirror server closest to your region on top. (Optional Step)
-    * ```pacstrap /mnt base linux linux-firmware base-devel vim lvm2```
+    * ```pacstrap /mnt base linux linux-firmware base-devel vim lvm2 dhcpcd```
     * ```genfstab -U /mnt >> /mnt/etc/fstab```
     * ```arch-chroot /mnt```
     * ```ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime```
