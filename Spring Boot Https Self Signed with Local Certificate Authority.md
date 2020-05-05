@@ -19,7 +19,7 @@ above command ask for password, keep it safe, it will be required in next steps
 ```openssl req -new -key myweb.key -out myweb.csr```<br>
 note: when asked for Common Name use your domain name, in my case its localhost
 
-#### Step 3. Create a config fix
+#### Step 3. Create a config file
 create config file localhost.ext with following information <br>
 ```
 authorityKeyIdentifier=keyid,issuer
@@ -35,4 +35,9 @@ DNS.1 = localhost
 One line command<br>
 ```printf "authorityKeyIdentifier=keyid,issuer\nbasicConstraints=CA:FALSE\nkeyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment\nsubjectAltName = @alt_names\n\n[alt_names]\nDNS.1 = dev.mergebot.com" > localhost.ext```
 
+### Step 4: Generate Certificate for signing
+``` openssl x509 -req -in myweb.csr -CA localCA.pem -CAkey localCA.key -CAcreateserial -out localhost.crt -days 360 -sha256 -extfile localhost.ext```
+
+#### Step 5: Create PKCS#12 bundle to be used in springboot application
+```openssl pkcs12 -inkey myweb.key -in localhost.crt -export -out localhost.p12```
 
