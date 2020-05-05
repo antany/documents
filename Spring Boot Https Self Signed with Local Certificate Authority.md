@@ -29,7 +29,9 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = localhost
-```<br>
+```
+<br>
+
 One line command<br>
 ```printf("authorityKeyIdentifier=keyid,issuer\nbasicConstraints=CA:FALSE\nkeyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment\nsubjectAltName = @alt_names\n\n[alt_names]\nDNS.1 = dev.mergebot.com > localhost.ext```
 
