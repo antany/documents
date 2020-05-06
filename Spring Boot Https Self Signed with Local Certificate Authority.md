@@ -44,8 +44,8 @@ One line command<br>
 
 ## Testing 
 #### Java Program
-
-CertificateFactory cf = CertificateFactory.getInstance("X.509");
+```
+		CertificateFactory cf = CertificateFactory.getInstance("X.509");
 		InputStream caInput = new BufferedInputStream(new FileInputStream("\\path\\to\\localCA.pem"));
 		Certificate ca;
 		try {
