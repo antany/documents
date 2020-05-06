@@ -41,3 +41,40 @@ One line command<br>
 #### Step 5: Create PKCS#12 bundle to be used in springboot application
 ```openssl pkcs12 -inkey myweb.key -in localhost.crt -export -out localhost.p12```
 
+
+## Testing 
+#### Java Program
+
+CertificateFactory cf = CertificateFactory.getInstance("X.509");
+		InputStream caInput = new BufferedInputStream(new FileInputStream("\\path\\to\\localCA.pem"));
+		Certificate ca;
+		try {
+		    ca = cf.generateCertificate(caInput);
+		    System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+		} finally {
+		    caInput.close();
+		}
+
+		String keyStoreType = KeyStore.getDefaultType();
+		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+		keyStore.load(null, null);
+		
+		keyStore.setCertificateEntry("ca", ca);
+
+		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+		tmf.init(keyStore);
+
+		SSLContext context = SSLContext.getInstance("TLS");
+		context.init(null, tmf.getTrustManagers(), null);
+		
+		URL url = new URL("https://fullurl");
+		HttpsURLConnection  urlConnection = (HttpsURLConnection ) url.openConnection();
+		urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		InputStream in = urlConnection.getInputStream();
+		BufferedReader reader = new  BufferedReader(new InputStreamReader(in));
+		String str;
+		while((str=reader.readLine())!=null) {
+			System.out.println(str);
+		}
+```
