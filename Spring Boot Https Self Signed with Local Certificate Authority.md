@@ -35,9 +35,12 @@ DNS.1 = localhost
 One line command<br>
 ``` hostname=localhost ``` 
 <br>
-```printf "authorityKeyIdentifier=keyid,issuer\nbasicConstraints=CA:FALSE\nkeyUsage
+
+```
+printf "authorityKeyIdentifier=keyid,issuer\nbasicConstraints=CA:FALSE\nkeyUsage
 = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment\nsubjectAltName = @alt_names\n\n[alt_names]\nDNS.1
- = $hostname" > $hostname.ext```
+ = $hostname" > $hostname.ext
+ ```
 
 ### Step 4: Generate Certificate for signing
 ``` openssl x509 -req -in myweb.csr -CA localCA.pem -CAkey localCA.key -CAcreateserial -out localhost.crt -days 360 -sha256 -extfile localhost.ext```
