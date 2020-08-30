@@ -1,4 +1,4 @@
-# How to install Arch Linux on removable media with UEFI & Legacy 
+# How to install Arch Linux on removable media with UEFI & Legacy boot, that can virtually run on any PC
 //Note I am documenting as i am testing.. if you read this line, then that means its not complete
 
 ## Step 1: Required softwares
