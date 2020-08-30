@@ -1,13 +1,13 @@
 # How to install Arch Linux on removable media with UEFI & Legacy boot, that can virtually run on any PC
 //Note I am documenting as i am testing.. if you read this line, then that means its not complete
 
-## Step 1: Required softwares
+### Step 1: Required softwares
 1. Virtual Box (https://www.virtualbox.org/wiki/Downloads) (Install the latest version)
 2. Virtual Box extension pack (https://www.virtualbox.org/wiki/Downloads) version matching virtual box
 3. Arch Linux ISO A [Download](https://www.archlinux.org/download/) Download ISO from any peferrable way
 4. Install Virtual Box and Extension pack
 
-## Step 2: Create new VM 
+### Step 2: Create new VM 
 1. Open Virtual Box, Create new VM by selecting Machine -> New and enter the following values and select create
   * Name    : (Anyname you like) , I am using Arch
   * Type    : Linux
@@ -15,9 +15,63 @@
   * Click create - leave others to default
   * In Create Virual Hard Disk, Click create - leave others to default. 
  
-### Step 3: Booting with Arch Linux
-1. Start the VM
-2. First time it will ask you pick up the bootable media, choose the iso you have downloaded from arch linux
-3. After successful boot, you will see ``` root@archiso ~# ```
+### Step 3: Booting with Arch Linux and add our USB
+Note : When selecting USB drive, pick the one with high read write speed preferrably USB 3.0 drive. If you have slow drive its still fine, but will be slower than high speed drive.
+
+1. Go to VM Settings->USB->(USB 3.0 (xHCI) Controller) (pick USB 2.0 if you are using USB 2.0)->add icon->Select your USB drive-> Ok 
+2. Start the VM
+3. First time it will ask you pick up the bootable media, choose the iso you have downloaded from arch linux
+4. After successful boot, you will see ``` root@archiso ~# ```
+
+### Step 4: Installing Arch
+1. ```lsblk ``` you will see list of drives and find the drive name using the size of usb drive
+2. In my case its ``` sdb ```, if yours is difference you can replace sdb with whatever you see in your pc, in the upcoming instructions. Note you will also see the drive you have picked up for your virtual box. Dont use that
+3. Creating parition & file systems
+  * For having both legacy and UEFI support, mininum i need 3 partitions
+    1. UEFI Boot
+    2. Legacy Boot
+    3. Others (OS + Softwares)
+```
+   gdisk /dev/sdb
+   p     //show any available partition
+   d     //delete if any paritions available
+   n -> enter->enter-> +1MB + EF02
+   n -> enter->enter-> +50MB + EF00
+   n -> enter->enter->enter->enter
+   p to cofirm the parition looks good
+   
+   Command (? for help): r
+   Recovery/transformation command (? for help): h
+
+   WARNING! Hybrid MBRs are flaky and dangerous! If you decide not to use one,
+   just hit the Enter key at the below prompt and your MBR partition table will
+   be untouched.
+
+   Type from one to three GPT partition numbers, separated by spaces, to be added to the hybrid MBR, in sequence: 1 2 3
+   Place EFI GPT (0xEE) partition first in MBR (good for GRUB)? (Y/N): N
+
+   Creating entry for GPT partition #1 (MBR partition #1)
+   Enter an MBR hex code (default EF): 
+   Set the bootable flag? (Y/N): N
+
+   Creating entry for GPT partition #2 (MBR partition #2)
+   Enter an MBR hex code (default EF): 
+   Set the bootable flag? (Y/N): N
+
+   Creating entry for GPT partition #3 (MBR partition #3)
+   Enter an MBR hex code (default 83): 
+   Set the bootable flag? (Y/N): Y
+
+   Recovery/transformation command (? for help): x
+   Expert command (? for help): h
+   Expert command (? for help): w
+
+   Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+   PARTITIONS!!
+
+   Do you want to proceed? (Y/N): Y
+   
+```
+
 
 
