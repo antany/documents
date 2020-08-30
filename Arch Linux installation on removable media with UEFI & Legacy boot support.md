@@ -23,7 +23,9 @@ Note : When selecting USB drive, pick the one with high read write speed preferr
 3. First time it will ask you pick up the bootable media, choose the iso you have downloaded from arch linux
 4. After successful boot, you will see ``` root@archiso ~# ```
 
-### Step 4: Installing Arch
+## Installing Arch
+
+### Step 4: Partitioning
 1. ```lsblk ``` you will see list of drives and find the drive name using the size of usb drive
 2. In my case its ``` sdb ```, if yours is difference you can replace sdb with whatever you see in your pc, in the upcoming instructions. Note you will also see the drive you have picked up for your virtual box. Dont use that
 3. Creating parition & file systems
@@ -72,6 +74,26 @@ Note : When selecting USB drive, pick the one with high read write speed preferr
    Do you want to proceed? (Y/N): Y
    
 ```
+
+### Format parition  & Mounting
+
+
+Leave partition 1 as it is
+
+```
+mkfs.fat -F32 /dev/sdb2
+mkfs.ext4 -O "^has_journal" /dev/sdb3
+
+mount /dev/sdb3 /mnt
+mkdir -p /mnt/boot/EFI
+mount /dev/sdb2 /mnt/boot/EFI
+
+```
+
+### Installing OS
+
+``` timedatectl set-ntp true ``` //sync time automatically
+``` pacstrap /mnt base linux linux-firmware base-devel vi vim dhcpcd dialog ppp wpa_supplicant ``` \\It will take few minutes depends on internet speed and disk speed
 
 
 
