@@ -97,7 +97,7 @@ mount /dev/sdb2 /mnt/boot/EFI
 ### Installing OS
 
  * ``` timedatectl set-ntp true ``` //sync time automatically
- * ``` pacstrap /mnt base linux linux-firmware base-devel vi vim dhcpcd dialog ppp wpa_supplicant \\It will take few minutes depends on internet speed and disk speed
+ * ``` pacstrap /mnt base linux linux-firmware base-devel vi vim dhcpcd dialog ppp wpa_supplicant
  * ```genfstab -U /mnt >> /mnt/etc/fstab```
  * ```arch-chroot /mnt```
  * ```ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime```
