@@ -96,16 +96,16 @@ mount /dev/sdb2 /mnt/boot/EFI
 
 ### Installing OS
 
-    * ``` timedatectl set-ntp true ``` //sync time automatically
-    * ``` pacstrap /mnt base linux linux-firmware base-devel vi vim dhcpcd dialog ppp wpa_supplicant \\It will take few minutes depends on internet speed and disk speed
-    * ```genfstab -U /mnt >> /mnt/etc/fstab```
-    * ```arch-chroot /mnt```
-    * ```ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime```
-    * ```hwclock --systohc```
-    * edit /etc/locale.gen and uncomment the locales need to be installed
-    * ```locale-gen```
-    * ```echo "LANG=en_US.UTF-8" > /etc/locale.conf```
-    * ```echo base > /etc/hostname```
+ * ``` timedatectl set-ntp true ``` //sync time automatically
+ * ``` pacstrap /mnt base linux linux-firmware base-devel vi vim dhcpcd dialog ppp wpa_supplicant \\It will take few minutes depends on internet speed and disk speed
+ * ```genfstab -U /mnt >> /mnt/etc/fstab```
+ * ```arch-chroot /mnt```
+ * ```ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime```
+ * ```hwclock --systohc```
+ * edit /etc/locale.gen and uncomment the locales need to be installed
+ * ```locale-gen```
+ * ```echo "LANG=en_US.UTF-8" > /etc/locale.conf```
+ * ```echo base > /etc/hostname```
 
 
 
