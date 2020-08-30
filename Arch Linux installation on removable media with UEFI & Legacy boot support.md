@@ -12,7 +12,12 @@
   * Name    : (Anyname you like) , I am using Arch
   * Type    : Linux
   * Version : Arch Linux (64-Bit) (if you dont see 64 Bit, make sure hyperviser is disable in windows and virtualization opion is enabled in bios)
+  * Click create - leave others to default
+  * In Create Virual Hard Disk, Click create - leave others to default. 
  
-  
+### Step 3: Booting with Arch Linux
+1. Start the VM
+2. First time it will ask you pick up the bootable media, choose the iso you have downloaded from arch linux
+3. After successful boot, you will see ``` root@archiso ~# ```
 
 
