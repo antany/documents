@@ -108,5 +108,17 @@ mount /dev/sdb2 /mnt/boot/EFI
  * ```echo base > /etc/hostname```
  * ```passwd ``` //setup password
 
+### Installation Grub & Configuration
+
+ * ``` pacman -S grub efibootmgr ```
+ * ``` grub-install --target=x86_64-efi --recheck --removable --efi-directory=/boot/EFI --boot-directory=/boot ```
+ * ``` grub-install --target=i386-pc --recheck --boot-directory=/boot /dev/sdb ```
+ * ``` grub-mkconfig -o /boot/grub/grub.cfg```
+ * ``` mkinitcpio -P linux ```
+ * ``` pacman -S  xf86-video-vesa xf86-video-ati xf86-video-intel xf86-video-amdgpu xf86-video-nouveau ```
+
+reboot and try booting with usb.. enjoy..
+
+
 
 
