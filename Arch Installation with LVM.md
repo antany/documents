@@ -56,7 +56,7 @@ General Guidance for HDD location = (Ramsize * 1.5) Swap + .5 GB + 2 GB (OS) + O
 
 8. Finishing Installation
     * Edit file /etc/mkinitcpio.conf and add systemd & sd-lvm2 hooks 
-        * HOOKS=(base <b>systemd</b> ... block <b>sd-lvm2</b> filesystems)
+        * HOOKS=(base <b>systemd</b> ... block <b>lvm2</b> filesystems)
     * ```mkinitcpio -p linux```
     * set password for root using ```passwd```
     * exit
