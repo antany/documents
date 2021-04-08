@@ -34,7 +34,7 @@ python3.7 --version
 ```
 * Make sure python is showing version 3.7
 
-### Create python virtual environment for 3.7 
+## Create python virtual environment for 3.7 
 
 ```shell
 python3.7 -m venv superset37
@@ -43,5 +43,27 @@ python --version
 ```
 * above commands should create virutal environment, and then the version output should be 3.7.x
 
+## Install Apache Superset
 
+```shell
+python -m pip install --upgrade pip setuptools
+
+python -m pip install apache-superset
+
+superset db upgrade 
+
+export FLASK_APP=superset
+
+superset fab create-admin
+
+# optional if required to play with some predefined data
+superset load_examples 
+
+superset fab create-admin
+
+superset init
+# To start a development web server on port 8088, use -p to bind to another port
+
+superset run -p 8088 --with-threads --reload --debugger
+```
 
