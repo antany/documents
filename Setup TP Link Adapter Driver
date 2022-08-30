@@ -9,4 +9,6 @@ cd /usr/src/rtl88x2bu-git
 make clean
 make       //this step takes few minutes, ignore the warning..
 make install
-
+sed -i 's/PACKAGE_VERSION="@PKGVER@"/PACKAGE_VERSION="git"/g' /usr/src/rtl88x2bu-git/dkms.conf
+dkms add -m rtl88x2bu -v git 
+dkms autoinstall // this step takes few minutes
