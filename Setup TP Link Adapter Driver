@@ -1,0 +1,12 @@
+sudo pacman -S linux-headers
+sudo reboot
+sudo su
+pacman -S git
+git clone 
+git clone "https://github.com/RinCat/RTL88x2BU-Linux-Driver.git" /usr/src/rtl88x2bu-git
+pacman -S dkms bc
+cd /usr/src/rtl88x2bu-git
+make clean
+make       //this step takes few minutes, ignore the warning..
+make install
+
