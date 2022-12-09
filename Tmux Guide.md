@@ -1,5 +1,9 @@
 SRC : https://stackoverflow.com/questions/5609192/how-to-set-up-tmux-so-that-it-starts-up-with-specified-windows-opened
 
+Example
+```
+alias tmuxcluster="tmux new-session  \; send-keys 'ssh n1.bd' C-m \; split-window -h \; send-keys 'ssh n2.bd' C-m \; split-window -v \; send-keys 'ssh n4.bd' C-m \; select-pane -t 0 \; split-window -v \; send-keys 'ssh n3.bd' C-m \; setw synchronize-panes \; select-pane -t 0"
+```
 tmux new-session \; 
 
 tmux new-session \;
