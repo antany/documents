@@ -36,5 +36,6 @@
  10. Set passwords for both root and myusername. ```passwd and  passwd username ```
  11. Edit the /etc/sudoers file and uncomment the following line. ``` %wheel ALL=(ALL) ALL ```
  12. Edit /etc/pacman.conf ``` IgnorePkg   = fakeroot ```
+ 13. ``` echo -e "[user]\ndefault=username" >> /etc/wsl.conf ``` to add default user
   
   
