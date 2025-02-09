@@ -1,5 +1,10 @@
 # Setting Up Arch Linux in VirtualBox with LVM
 
+### Prerequisites:
+- [x] Archlinux ISO  [Download](https://archlinux.org/download/)
+- [x] VirtualBox [Download](https://www.virtualbox.org/wiki/Downloads)
+
+
 ## VM Configuration
 1. 8GB Ram
 2. 20 GB (Intial HDD)
