@@ -6,9 +6,9 @@
 
 ### Configure Virtual Machine
 - Select a name for VM and Provide ISO image and specify where it needs to be installed
-
-<img src="images/arch-vbox-config.png" alt="drawing" width="200" height="100"/>
-
+<div style="float:left;margin:0 100px 100px 0" markdown="1">
+    <img src="images/arch-vbox-config.png" alt="drawing" width="200" height="100"/>
+</div>
 
 
 ## VM Configuration
