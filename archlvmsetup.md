@@ -4,6 +4,10 @@
 -  Archlinux ISO  [[Download](https://archlinux.org/download/)]
 -  VirtualBox [[Download](https://www.virtualbox.org/wiki/Downloads)]
 
+### Configure Virtual Machine
+- Select a name for VM and Provide ISO image and specify where it needs to be installed
+- ![](images/arch-vbox-config.jpg)
+
 
 ## VM Configuration
 1. 8GB Ram
