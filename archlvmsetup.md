@@ -6,7 +6,10 @@
 
 ### Configure Virtual Machine
 - Select a name for VM and Provide ISO image and specify where it needs to be installed
-- ![](images/arch-vbox-config.png)
+
+<img src="drawing.jpg" alt="drawing" width="200" height="100"/>
+
+![](images/arch-vbox-config.png)
 
 
 ## VM Configuration
